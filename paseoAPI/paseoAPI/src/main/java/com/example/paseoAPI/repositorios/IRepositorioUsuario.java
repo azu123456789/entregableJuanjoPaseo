@@ -10,4 +10,6 @@ import com.example.paseoAPI.models.Usuario;
 @Repository
 public interface IRepositorioUsuario extends JpaRepository <Usuario,UUID>{
 
+    Optional<Usuario> findByCorreo(String correo);
+
 }

@@ -3,7 +3,9 @@ package com.example.paseoAPI.servicios;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.paseoAPI.models.Usuario;
 import com.example.paseoAPI.repositorios.IRepositorioUsuario;
@@ -17,9 +19,20 @@ public class usuarioServicio {
     private IRepositorioUsuario repositorioUsuario;
 
     public boolean guardarUsuarioEnBD(Usuario datos){
+        if (repositorioUsuario.findByCorreo(datos.getCorreo()).isPresent()){
+            throw new ResponseStatusException(
+                HttpStatus.CONFLICT,
+                "Ya existe una cuenta con ese correo ingresado"
+            );
+        }
+        
+        //condiciones logicas para validar datos a guardar 
+        //1 validar el correo a registrar no se haya ingresado previamente 
+
+
+
         return false;
-        //validar que datos me envian y si estos cumplen las reglas de negocio 
-        //guardar los datos en BD con ayuda del repositorio 
+        
     }
 
     public boolean modificarUsuarioEnBD (Usuario datos, UUID id){
