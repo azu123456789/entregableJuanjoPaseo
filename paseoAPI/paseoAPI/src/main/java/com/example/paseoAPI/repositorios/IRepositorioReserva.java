@@ -9,5 +9,6 @@ import com.example.paseoAPI.models.Reserva;
 
 @Repository
 public interface IRepositorioReserva extends JpaRepository <Reserva,UUID> {
+    Opcional<Reserva> findById(UUID id);
 
 }

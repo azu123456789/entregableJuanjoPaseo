@@ -9,5 +9,6 @@ import com.example.paseoAPI.models.Espacio;
 
 @Repository
 public interface IRepositorioEspacio extends JpaRepository<Espacio, UUID>{
+    Optional<Espacio> findByNombre(String nombre);
 
 }
